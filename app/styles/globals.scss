@@ -35,10 +35,14 @@ body {
   .link {
     text-decoration: none;
 
+    p {
+      color: white;
+    }
+
     span {
       color: white;
       margin-left: 20px;
-		text-transform: uppercase;
+      text-transform: uppercase;
     }
 
     h2 {
@@ -48,5 +52,5 @@ body {
 }
 
 .pointer {
-	cursor: pointer;
+  cursor: pointer;
 }

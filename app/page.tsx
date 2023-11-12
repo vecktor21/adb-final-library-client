@@ -45,18 +45,18 @@ export default function Home() {
       <div className="catalog__books">
         {results.data.map((book, index: number) => {
           return (
-            //<Link className="link" href={`/${book.id}`} key={index}>
-              <div className="catalog__book pointer">
+            <div className="catalog__book pointer" key={index}>
+              <Link className="link" href={`/${book.id}`}>
                 <p className="catalog__book-title">{book.title}</p>
                 <p className="catalog__book-author">{book.author}</p>
                 <p className="catalog__book-price">{book.price}</p>
-                <input
-                  type="button"
-                  value="Add to cart"
-                  onClick={() => addToCart(book.id)}
-                />
-              </div>
-            //</Link>
+              </Link>
+              <input
+                type="button"
+                value="Add to cart"
+                onClick={() => addToCart(book.id)}
+              />
+            </div>
           );
         })}
       </div>
