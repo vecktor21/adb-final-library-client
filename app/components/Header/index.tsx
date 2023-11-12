@@ -34,7 +34,11 @@ const Header = () => {
           </>
         ) : (
           <>
-            <Link className="link" href="/">
+            <Link
+              className="link"
+              href="/"
+              onClick={() => localStorage.clear()}
+            >
               <span>exit</span>
             </Link>
           </>

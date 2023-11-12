@@ -29,6 +29,29 @@ const Book = () => {
 
     getBookData();
 
+    const postBookToHistory = async () => {
+      const response = await fetch(
+        `http://localhost:5000/api/Users/${userId}/history/${id}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+
+      if (!response.ok) {
+        console.log("Error posting data");
+        return;
+      }
+
+      const responseData = await response.json();
+      console.log("Response:", responseData.likes);
+    };
+
+    postBookToHistory();
+
     if (data && data.likes.includes(userId)) {
       setColor("red");
     } else {
