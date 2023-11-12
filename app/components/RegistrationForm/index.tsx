@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useRouter } from "next/navigation";
 
 type Inputs = {
   name: string;
@@ -17,9 +18,26 @@ type Inputs = {
 
 const RegistrationForm = () => {
   const { register, handleSubmit, reset, control } = useForm();
+  const router = useRouter();
 
-  const onSubmit: SubmitHandler<Inputs> = (data: Inputs) => {
+  const onSubmit: SubmitHandler<Inputs> = async (data: Inputs) => {
     console.log(data);
+    const response = await fetch("http://localhost:5000/api/Users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      console.log("Error posting data");
+      return;
+    }
+
+    const responseData = await response.json();
+    console.log("Response:", responseData);
+    router.push("/authorization");
     reset();
   };
 
@@ -72,7 +90,7 @@ const RegistrationForm = () => {
         />
         <input
           {...register("description")}
-          placeholder="Enter your name"
+          placeholder="Description"
           type="text"
         />
         <input

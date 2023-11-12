@@ -1,0 +1,38 @@
+.catalog {
+  color: white;
+  padding-top: 200px;
+
+  &__books {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  &__book {
+    width: 180px;
+    height: 250px;
+    background-color: black;
+    background-image: url("/assets/images/book-cover.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    text-align: center;
+	 color: white !important;
+    padding-top: 40px;
+
+    &-title {
+      font-size: 25px;
+    }
+
+    &-author {
+		margin-top: 20px;
+      font-size: 22px;
+    }
+
+	 &-price {
+		margin-top: 20px;
+		font-size: 20px;
+	 }
+  }
+}

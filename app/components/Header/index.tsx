@@ -11,18 +11,34 @@ const Header = () => {
         <Link className="link" href="/">
           <span>catalog</span>
         </Link>
-        <Link className="link" href="/cart">
-          <span>cart</span>
-        </Link>
         <Link className="link" href="/profile">
           <span>profile</span>
         </Link>
-        <Link className="link" href="/authorization">
+        <Link className="link" href="/cart">
+          <span>cart</span>
+        </Link>
+        {/*<Link className="link" href="/authorization">
           <span>sign in</span>
         </Link>
         <Link className="link" href="/registration">
           <span>sign up</span>
-        </Link>
+        </Link>*/}
+        {localStorage.getItem("token") === null ? (
+          <>
+            <Link className="link" href="/authorization">
+              <span>sign in</span>
+            </Link>
+            <Link className="link" href="/registration">
+              <span>sign up</span>
+            </Link>
+          </>
+        ) : (
+          <>
+            <Link className="link" href="/">
+              <span>exit</span>
+            </Link>
+          </>
+        )}
       </div>
     </header>
   );

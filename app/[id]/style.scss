@@ -1,0 +1,14 @@
+.book {
+	padding-top: 200px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: start;
+
+	&__information {
+		
+		& h1 {
+			color: white;
+		}
+	}
+}

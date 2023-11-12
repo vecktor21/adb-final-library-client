@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 
 type Inputs = {
   email: string;
@@ -12,8 +12,6 @@ type Inputs = {
 const AuthorizationForm = () => {
   const { register, handleSubmit, reset, control } = useForm();
   const router = useRouter();
-
-  console.log(router)
 
   const onSubmit: SubmitHandler<Inputs> = async (data: Inputs) => {
     console.log(data);
@@ -32,7 +30,21 @@ const AuthorizationForm = () => {
 
     const responseData = await response.json();
     console.log("Response:", responseData);
-	 router.push("/");
+
+    const accessToken = responseData.accessToken;
+    const userData = responseData.user;
+    if (localStorage.getItem("token") === null) {
+      localStorage.setItem("token", accessToken);
+      localStorage.setItem("user", userData);
+      localStorage.setItem("userId", userData.id);
+      console.log("new token", localStorage.getItem("token"));
+      console.log("new user", localStorage.getItem("user"));
+    } else {
+      console.log("token", localStorage.getItem("token"));
+      console.log("user", localStorage.getItem("user"));
+    }
+
+    router.push("/");
     reset();
   };
 
