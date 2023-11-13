@@ -3,6 +3,8 @@
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import { useAppDispatch } from "@/src/hooks/hook";
+import { setUserId } from "@/src/services/slice";
 
 type Inputs = {
   email: string;
@@ -10,6 +12,7 @@ type Inputs = {
 };
 
 const AuthorizationForm = () => {
+  const dispatch = useAppDispatch();
   const { register, handleSubmit, reset, control } = useForm();
   const router = useRouter();
 
@@ -37,6 +40,7 @@ const AuthorizationForm = () => {
       localStorage.setItem("token", accessToken);
       localStorage.setItem("user", userData);
       localStorage.setItem("userId", userData.id);
+		dispatch(setUserId(userData.id))
       console.log("new token", localStorage.getItem("token"));
       console.log("new user", localStorage.getItem("user"));
     } else {

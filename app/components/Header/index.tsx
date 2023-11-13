@@ -1,5 +1,7 @@
 import Link from "next/link";
 import React, { useState } from "react";
+import { useAppDispatch, useAppSelector } from "@/src/hooks/hook";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const userId = localStorage.getItem("userId");
@@ -7,9 +9,16 @@ const Header = () => {
 
   const [state, setState] = useState(userId);
 
+  //  const userId1 = useAppSelector((state) => state.userId);
+  const dispatch = useAppDispatch();
+
+  const userId1 = useSelector((state) => state.todos.userId);
+  console.log("userId", userId1);
+
   return (
     <header className="container">
       <Link className="link" href="/">
+        <h1>{userId1}</h1>
         <h1>Booky</h1>
       </Link>
       <div>
@@ -28,7 +37,7 @@ const Header = () => {
         <Link className="link" href="/registration">
           <span>sign up</span>
         </Link>*/}
-        {state === null ? (
+        {userId1 === null || userId1 === undefined || userId1 === "" ? (
           <>
             <Link className="link" href="/authorization">
               <span>sign in</span>
@@ -42,7 +51,10 @@ const Header = () => {
             <Link
               className="link"
               href="/"
-              onClick={() => localStorage.clear()}
+              onClick={() => {
+                localStorage.clear();
+                dispatch(setUserId(''));
+              }}
             >
               <span>exit</span>
             </Link>
