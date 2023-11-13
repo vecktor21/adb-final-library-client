@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import fetchCart from "@/src/services/fetchCart";
+import Link from "next/link";
 
 const Cart = () => {
   const userId = localStorage.getItem("userId");
@@ -27,17 +28,29 @@ const Cart = () => {
 
   return (
     <div className="cart container">
-      <h1>Cart</h1>
+      <h1 style={{ marginBottom: 50 }}>Cart</h1>
       {data &&
         data.books.map((item, index) => {
           return (
-            <div key={index}>
-              <h1>{item.book.title}</h1>
-              <h1>{item.book.publishCity}</h1>
-            </div>
+            <Link href={`/${item.book.id}`} key={index}>
+              <div
+                className="book-cart"
+                style={{
+                  width: 180,
+                  height: 250,
+                  border: "1px solid black",
+                  marginBottom: 50,
+                }}
+              >
+                <p>Title: {item.book.title}</p>
+                <p>Price: {item.book.price}</p>
+                <p>Count: {item.count}</p>
+              </div>
+            </Link>
           );
         })}
-      {data && data.total}
+      <hr />
+      <h1>Total: {data && data.total}</h1>
     </div>
   );
 };

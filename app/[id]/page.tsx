@@ -14,43 +14,39 @@ const Book = () => {
   //  const results = useQuery([id, id], fetchBook);
 
   useEffect(() => {
-    const getBookData = async () => {
-      const response = await fetch(`http://localhost:5000/api/Books/${id}`);
+    const fetchData = async () => {
+      try {
+        const [bookResponse, historyResponse] = await Promise.all([
+          fetch(`http://localhost:5000/api/Books/${id}`),
+          fetch(`http://localhost:5000/api/Users/${userId}/history/${id}`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }),
+        ]);
 
-      if (!response.ok) {
-        console.log("Error posting data");
-        return;
-      }
-
-      const responseData = await response.json();
-      setData(responseData);
-      console.log("Response:", responseData.likes);
-    };
-
-    getBookData();
-
-    const postBookToHistory = async () => {
-      const response = await fetch(
-        `http://localhost:5000/api/Users/${userId}/history/${id}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
+        if (!bookResponse.ok) {
+          console.error("Error fetching book data");
+          return;
         }
-      );
 
-      if (!response.ok) {
-        console.log("Error posting data");
-        return;
+        const bookData = await bookResponse.json();
+        setData(bookData);
+
+        if (!historyResponse.ok) {
+          console.error("Error posting book to history");
+          return;
+        }
+
+        const historyData = await historyResponse.json();
+        console.log("History Response:", historyData.likes);
+      } catch (error) {
+        console.error("Error:", error);
       }
-
-      const responseData = await response.json();
-      console.log("Response:", responseData.likes);
     };
 
-    postBookToHistory();
+    fetchData();
 
     if (data && data.likes.includes(userId)) {
       setColor("red");

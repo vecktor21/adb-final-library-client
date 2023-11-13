@@ -5,7 +5,7 @@
   &__books {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+   // justify-content: space-between;
     flex-wrap: wrap;
   }
 
@@ -13,13 +13,16 @@
     width: 180px;
     height: 250px;
     background-color: black;
-    background-image: url("/assets/images/book-cover.png");
+   // background-image: url("/assets/images/book-cover.png");
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-99sLWPGSzKTMr4J6EVu_4X0Q6hBPODZKPO080-SlQjvNc7UMOTfGwrIGvphN-zILc0w&usqp=CAU");
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100% 100%;
     text-align: center;
 	 color: white !important;
     padding-top: 40px;
+	 margin-right: 50px;
+	 margin-top: 50px;
 
     &-title {
       font-size: 25px;

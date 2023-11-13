@@ -1,11 +1,16 @@
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 
 const Header = () => {
+  const userId = localStorage.getItem("userId");
+  console.log("header", userId);
+
+  const [state, setState] = useState(userId);
+
   return (
     <header className="container">
       <Link className="link" href="/">
-        <h2>Booky</h2>
+        <h1>Booky</h1>
       </Link>
       <div>
         <Link className="link" href="/">
@@ -23,7 +28,7 @@ const Header = () => {
         <Link className="link" href="/registration">
           <span>sign up</span>
         </Link>*/}
-        {localStorage.getItem("token") === null ? (
+        {state === null ? (
           <>
             <Link className="link" href="/authorization">
               <span>sign in</span>
