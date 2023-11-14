@@ -1,4 +1,8 @@
 @import "./imports.scss";
+@font-face {
+  font-family: "Nothing You Could Do";
+  src: url("/assets/fonts/NothingYouCouldDo-Regular.ttf");
+}
 
 *,
 *::before,
@@ -19,8 +23,15 @@ body {
   min-height: 100vh;
 
   header {
-	background-color: white;
-	box-shadow: 1px 1px 10px black;
+    background-color: white;
+    box-shadow: 1px 1px 10px black;
+  }
+
+  footer {
+    & h1,
+	 & h3 {
+      font-family: "Nothing You Could Do";
+    }
   }
 
   .header {
@@ -130,6 +141,6 @@ body {
   }
 
   svg {
-	border-bottom: 1px solid black;
+    border-bottom: 1px solid black;
   }
 }
