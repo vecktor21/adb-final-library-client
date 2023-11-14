@@ -1,14 +1,58 @@
 .book {
-	padding-top: 200px;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: start;
+  padding-top: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: start;
 
-	&__information {
-		
-		& h1 {
-			color: black;
-		}
+  &__information {
+    & h1 {
+      color: black;
+    }
+  }
+
+  &__wrapper {
+	h2 {
+		margin-top: 10px;
 	}
+  }
+
+  &__cover {
+    width: 400px;
+    height: 550px;
+    background-color: black;
+    border-radius: 15px;
+    text-align: center;
+    padding-top: 140px;
+	 margin-right: 100px;
+
+    h1 {
+      color: white;
+		height: 150px;
+    }
+
+    h2 {
+      color: white;
+    }
+
+    &-title {
+      margin-top: 80px;
+		height: 50px;
+    }
+
+    &-year {
+      margin-top: 70px;
+    }
+  }
 }
+
+//"id": "a2a4d6cd-9cf6-49f7-afad-4404fe44fdb9",
+//"title": "Гарри Поттер и узник Азкабана",
+//"piblishCity": "Москва",
+//"publisher": "ДМК Пресс",
+//"pages": 510,
+//"coverType": "Мягкий переплет",
+//"price": 4884,
+//"year": 2006,
+//"discount": 0,
+//"genre": "Фантастика",

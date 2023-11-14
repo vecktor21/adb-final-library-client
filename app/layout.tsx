@@ -36,6 +36,11 @@ export default function RootLayout({
           <body className={inter.className}>
             <Header />
             {children}
+				<footer style={{textAlign: 'center',
+			padding: "50px 0"}}>
+					<h1>Denis Odnourov & Shalkar Koshenayev</h1>
+					<h3 style={{marginTop: 20}}>(CSE-2305 & CSE-2301)</h3>
+				</footer>
           </body>
         </QueryClientProvider>
       </Provider>

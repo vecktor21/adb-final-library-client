@@ -2,6 +2,7 @@
 
 import fetchUser from "@/src/services/fetchUser";
 import { useQuery } from "@tanstack/react-query";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 const Profile = () => {
@@ -55,29 +56,75 @@ const Profile = () => {
   }
 
   console.log(results.data);
+
+  const addToCart = async (bookId: string) => {
+    const response = await fetch(
+      `http://localhost:5000/api/Carts/${userId}/book/${bookId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: "",
+      }
+    );
+
+    if (!response.ok) {
+      console.log("Error posting data");
+      return;
+    }
+
+    const responseData = await response.json();
+    console.log("Response:", responseData);
+  };
+
   return (
-    <div className="profile container">
-      <h1>{results.data.name}</h1>
-      <h1>{results.data.surname}</h1>
-      <h1>{results.data.email}</h1>
-      <h1>{results.data.age}</h1>
-      <h1>{results.data.phoneNumber}</h1>
+    <div className="profile container" style={{ paddingTop: 100 }}>
+      <h2>
+        Full name: {results.data.name} {results.data.surname}
+      </h2>
+      <br />
+      <h3>Email: {results.data.email}</h3>
+      <br />
+      <h3>Age: {results.data.age}</h3>
+      <br />
+      <h3>Phone number: {results.data.phoneNumber}</h3>
       <br />
       <div>
-        <h1>Recommendations</h1>
+        <h2 style={{ textDecoration: "underline" }}>Recommendations</h2>
         <br />
         <div
           style={{
             display: "flex",
             flexDirection: "row",
-            justifyContent: "space-between",
+            //justifyContent: "space-between",
           }}
         >
           {data &&
             data.map((book, index) => {
               return (
-                <div key={index}>
-                  <h1>{book.title}</h1>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                  key={index}
+                >
+                  <div className="catalog__book pointer">
+                    <Link className="link" href={`/${book.id}`}>
+                      <p className="catalog__book-title">{book.title}</p>
+                      <p className="catalog__book-author">{book.author}</p>
+                      <p className="catalog__book-price">{book.price}</p>
+                    </Link>
+                  </div>
+                  <input
+                    className="catalog__book-button pointer"
+                    style={{ marginRight: 50, marginTop: 20 }}
+                    type="button"
+                    value="Add to cart"
+                    onClick={() => addToCart(book.id)}
+                  />
                 </div>
               );
             })}
@@ -86,19 +133,39 @@ const Profile = () => {
       <br />
       <br />
       <div>
-        <h1>History</h1>
+        <h2 style={{ textDecoration: "underline" }}>History</h2>
         <div
           style={{
             display: "flex",
             flexDirection: "row",
-            justifyContent: "space-between",
+            //justifyContent: "space-between",
           }}
         >
           {historyData &&
             historyData.map((book, index) => {
               return (
-                <div key={index}>
-                  <h1>{book.title}</h1>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                  key={index}
+                >
+                  <div className="catalog__book pointer">
+                    <Link className="link" href={`/${book.id}`}>
+                      <p className="catalog__book-title">{book.title}</p>
+                      <p className="catalog__book-author">{book.author}</p>
+                      <p className="catalog__book-price">{book.price}</p>
+                    </Link>
+                  </div>
+                  <input
+                    className="catalog__book-button pointer"
+                    style={{ marginRight: 50, marginTop: 20 }}
+                    type="button"
+                    value="Add to cart"
+                    onClick={() => addToCart(book.id)}
+                  />
                 </div>
               );
             })}

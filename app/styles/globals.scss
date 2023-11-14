@@ -19,6 +19,11 @@ body {
   min-height: 100vh;
 
   header {
+	background-color: white;
+	box-shadow: 1px 1px 10px black;
+  }
+
+  .header {
     color: black;
     padding: 20px 0;
 
@@ -58,13 +63,73 @@ body {
 }
 
 .book-cart {
-	background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-99sLWPGSzKTMr4J6EVu_4X0Q6hBPODZKPO080-SlQjvNc7UMOTfGwrIGvphN-zILc0w&usqp=CAU");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100% 100%;
-	 display: flex;
-	 flex-direction: column;
-	// justify-content: center;
-	padding-top: 60px;
-	 align-items: center;
+  //background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-99sLWPGSzKTMr4J6EVu_4X0Q6hBPODZKPO080-SlQjvNc7UMOTfGwrIGvphN-zILc0w&usqp=CAU");
+  background-color: black;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  padding: 40px 15px 0;
+  align-items: center;
+  text-align: center;
+
+  &-title {
+    font-size: 18px;
+    height: 85px;
+    color: white !important;
+  }
+
+  &-author {
+    margin-top: 20px;
+    height: 45px;
+    font-size: 18px;
+    color: white !important;
+  }
+
+  &-price {
+    margin-bottom: 10px;
+    font-size: 18px;
+    height: 21px;
+    color: white !important;
+    text-decoration: underline;
+  }
+
+  &-count {
+    font-size: 18px;
+    height: 21px;
+    color: white !important;
+    text-decoration: underline;
+  }
+}
+
+.select {
+  padding: 5px 10px;
+  color: black;
+  border: 2px solid black;
+  border-radius: 15px;
+  margin-right: 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.apply {
+  padding: 5px 10px;
+  color: black;
+  border: 2px solid black;
+  border-radius: 15px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.link-active {
+  span {
+    text-decoration: underline;
+  }
+
+  svg {
+	border-bottom: 1px solid black;
+  }
 }

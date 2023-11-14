@@ -53,26 +53,37 @@ export default function Home() {
           setFilter(data.filter);
         })}
       >
-        <select {...register("filter")}>
+        <select className="select" {...register("filter")}>
           <option value="All">All</option>
           <option value="Научная литература">Научная литература</option>
           <option value="Фантастика">Фантастика</option>
           <option value="Бизнес">Бизнес</option>
         </select>
-        <input type="submit" value="Apply" />
+        <input className="apply" type="submit" value="Apply" />
       </form>
-		<br />
+      <br />
       <div className="catalog__books">
         {results.data.map((book, index: number) => {
           if (filter === "All") {
             return (
-              <div className="catalog__book pointer" key={index}>
-                <Link className="link" href={`/${book.id}`}>
-                  <p className="catalog__book-title">{book.title}</p>
-                  <p className="catalog__book-author">{book.author}</p>
-                  <p className="catalog__book-price">{book.price}</p>
-                </Link>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+                key={index}
+              >
+                <div className="catalog__book pointer">
+                  <Link className="link" href={`/${book.id}`}>
+                    <p className="catalog__book-title">{book.title}</p>
+                    <p className="catalog__book-author">{book.author}</p>
+                    <p className="catalog__book-price">{book.price}</p>
+                  </Link>
+                </div>
                 <input
+					 className="catalog__book-button pointer"
+					 style={{marginRight: 50, marginTop: 20}}
                   type="button"
                   value="Add to cart"
                   onClick={() => addToCart(book.id)}
